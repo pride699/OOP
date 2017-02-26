@@ -1,4 +1,4 @@
-package Weapons::Torpedo;
+package Weapons::Weapon::Torpedo;
 
 
 use Moose;

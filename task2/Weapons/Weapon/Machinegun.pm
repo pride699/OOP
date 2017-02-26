@@ -1,4 +1,4 @@
-package Weapons::Machinegun;
+package Weapons::Weapon::Machinegun;
 
 
 use Moose;

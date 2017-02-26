@@ -1,4 +1,4 @@
-package Weapons::Cannon;
+package Weapons::Weapon::Cannon;
 
 use Moose;
 

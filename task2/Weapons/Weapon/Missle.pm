@@ -1,4 +1,4 @@
-package Weapons::Missle;
+package Weapons::Weapon::Missle;
 
 use Moose;
 
