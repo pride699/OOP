@@ -1,14 +1,14 @@
-package Units::Unit::Plane;
+package Unit::Plane;
 
 use Moose;
-use Weapons::Weapon::Machinegun;
-use Weapons::Weapon::Missle;
+use Weapon::Machinegun;
+use Weapon::Missle;
 
-extends 'Units::Unit';
+extends 'Unit';
 
 has 'weapon1' => (
 	is => 'ro',
-	isa => 'Weapons::Weapon',
+	isa => 'Weapon',
 	builder => '_install_w1',
 	handles => {
 		recharge_mg => 'recharge',
@@ -18,7 +18,7 @@ has 'weapon1' => (
 
 has 'weapon2' => (
 	is => 'ro',
-	isa => 'Weapons::Weapon',
+	isa => 'Weapon',
 	builder => '_install_w2',
 	handles => {
 		shoot_missle    => 'shoot',
@@ -26,12 +26,12 @@ has 'weapon2' => (
 );
 
 sub _install_w1 {
-	my $weapon1 = Weapons::Weapon::Machinegun->new( ammo => '7000', belt_capacity => '300' );
+	my $weapon1 = Weapon::Machinegun->new( ammo => '7000', belt_capacity => '300' );
 	return $weapon1;
 }
 
 sub _install_w2 {
-	my $weapon2 = Weapons::Weapon::Missle->new( ammo => '20' );
+	my $weapon2 = Weapon::Missle->new( ammo => '20' );
 	return $weapon2;
 }
 
@@ -58,17 +58,19 @@ sub move {
 		$self->health(0);
 		return;
 	};
-	if ( $self->isa('Units::Unit::Tank')) {
+	# return if !$self->SUPER::move; 
+	
+	if ( $self->isa('Unit::Tank')) {
 		print ("It seems we are blown up!\n");
 		$self->health(0);
 		return;
 	};
-	if ( $self->isa('Units::Unit::Ship')) {
+	if ( $self->isa('Unit::Ship')) {
 		print ("It seems we are blown up!\n");
 		$self->health(0);
 		return;
 	};
-	if ( $self->isa('Units::Unit::Art')) {
+	if ( $self->isa('Unit::Art')) {
 		print ("It seems we are blown up!\n");
 		$self->health(0);
 		return;

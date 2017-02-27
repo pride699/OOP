@@ -1,15 +1,15 @@
-package Units::Unit::Ship;
+package Unit::Ship;
 
 use Moose;
-use Weapons::Weapon::Cannon;
-use Weapons::Weapon::Torpedo;
+use Weapon::Cannon;
+use Weapon::Torpedo;
 
-extends 'Units::Unit';
+extends 'Unit';
 
 
 has 'weapon1' => (
 	is => 'ro',
-	isa => 'Weapons::Weapon',
+	isa => 'Weapon',
 	builder => '_install_w1',
 	handles => {
 		recharge_cannon => 'recharge',
@@ -19,7 +19,7 @@ has 'weapon1' => (
 
 has 'weapon2' => (
 	is => 'ro',
-	isa => 'Weapons::Weapon',
+	isa => 'Weapon',
 	builder => '_install_w2',
 	handles => {
 		shoot_torpedo  => 'shoot',
@@ -27,12 +27,12 @@ has 'weapon2' => (
 );
 
 sub _install_w1 {
-	my $weapon1 = Weapons::Weapon::Cannon->new( ammo => '200' );
+	my $weapon1 = Weapon::Cannon->new( ammo => '200' );
 	return $weapon1;
 }
 
 sub _install_w2 {
-	my $weapon2 = Weapons::Weapon::Torpedo->new( ammo => '50' );
+	my $weapon2 = Weapon::Torpedo->new( ammo => '50' );
 	return $weapon2;
 }
 
@@ -47,28 +47,29 @@ after 'prepare' => sub {
 sub move {
 	my $self = shift;
 	
-	if ( $self->check_status == 0) {
-		return;
-	};
-	if ( $self->prepared == 0) {
-		print ("We are not prepared for battle! \n");
-		return;
-	};
-	if ( $self->speed <= 0) {
-		print ("We are immobilized\n");
-		return;
-	};
-	if ( $self->isa('Units::Unit::Tank')) {
+	# if ( $self->check_status == 0) {
+	# 	return;
+	# };
+	# if ( $self->prepared == 0) {
+	# 	print ("We are not prepared for battle! \n");
+	# 	return;
+	# };
+	# if ( $self->speed <= 0) {
+	# 	print ("We are immobilized\n");
+	# 	return;
+	# };
+	return if !$self->SUPER::move; 
+	if ( $self->isa('Unit::Tank')) {
 		print ("We are drowning!\n");
 		$self->health(0);
 		return;
 	};
-	if ( $self->isa('Units::Unit::Plane')) {
+	if ( $self->isa('Unit::Plane')) {
 		print ("We are drowning!\n");
 		$self->health(0);
 		return;
 	};
-	if ( $self->isa('Units::Unit::Art')) {
+	if ( $self->isa('Unit::Art')) {
 		print ("We are drowning!\n");
 		$self->health(0);
 		return;

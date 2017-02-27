@@ -1,5 +1,5 @@
 
-package Weapons::Weapon;
+package Weapon;
 
 use Moose;
 

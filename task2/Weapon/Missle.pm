@@ -1,8 +1,8 @@
-package Weapons::Weapon::Missle;
+package Weapon::Missle;
 
 use Moose;
 
-extends 'Weapons::Weapon';
+extends 'Weapon';
 
 has 'ammo' => (
 	is  	=> 'rw',

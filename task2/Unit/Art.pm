@@ -1,14 +1,14 @@
-package Units::Unit::Art;
+package Unit::Art;
 
 use Moose;
-use Weapons::Weapon::Cannon;
+use Weapon::Cannon;
 
-extends 'Units::Unit';
+extends 'Unit';
 
 
 has 'weapon1' => (
 	is => 'ro',
-	isa => 'Weapons::Weapon',
+	isa => 'Weapon',
 	builder => '_install_w1',
 	handles => {
 		recharge_cannon => 'recharge',
@@ -17,7 +17,7 @@ has 'weapon1' => (
 );
 
 sub _install_w1 {
-	my $weapon1 = Weapons::Weapon::Cannon->new( ammo => '50' );
+	my $weapon1 = Weapon::Cannon->new( ammo => '50' );
 	return $weapon1;
 }
 
@@ -33,23 +33,25 @@ after 'prepare' => sub {
  sub move {
 	my $self = shift;
 
-	if ( $self->check_status == 0) {
-		return;
-	};
-	if ( $self->prepared == 0) {
-		print ("We are not prepared for battle! \n");
-		return;
-	};
-	if ( $self->speed <= 0) {
-		print ("We are immobilized\n");
-		return;
-	};
-	if ( $self->isa('Units::Unit::Ship')) {
+	# if ( $self->check_status == 0) {
+	# 	return;
+	# };
+	# if ( $self->prepared == 0) {
+	# 	print ("We are not prepared for battle! \n");
+	# 	return;
+	# };
+	# if ( $self->speed <= 0) {
+	# 	print ("We are immobilized\n");
+	# 	return;
+	# };
+	return if !$self->SUPER::move; 
+
+	if ( $self->isa('Unit::Ship')) {
 		print ("Oh no! It's ground!\n");
 		$self->health(0);
 		return;
 	};
-	if ( $self->isa('Units::Unit::Plane')) {
+	if ( $self->isa('Unit::Plane')) {
 		print ("Oh no! It's ground!\n");
 		$self->health(0);
 		return;

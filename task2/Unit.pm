@@ -1,7 +1,7 @@
-package Units::Unit;
+package Unit;
 
 use Moose;
-use Weapons::Weapon;
+use Weapon;
 # use Units::Unit::Tank;
 # use Units::Unit::Plane;
 # use Units::Unit::Ship;
@@ -49,6 +49,18 @@ sub prepare {
 
 sub move {
 	my $self = shift;
+
+	if ( $self->check_status == 0) {
+		return 0;
+	} elsif ( $self->prepared == 0) {
+		print ("We are not prepared for battle! \n");
+		return 0;
+	} elsif ( $self->speed <= 0) {
+		print ("We are immobilized\n");
+		return 0;
+	} else {
+		return 1;
+	};
 }
 
 sub check_status {

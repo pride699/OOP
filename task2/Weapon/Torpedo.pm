@@ -1,9 +1,9 @@
-package Weapons::Weapon::Torpedo;
+package Weapon::Torpedo;
 
 
 use Moose;
 
-extends 'Weapons::Weapon';
+extends 'Weapon';
 
 
 has 'ammo' => (
