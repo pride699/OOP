@@ -33,7 +33,7 @@ has 'prepared' => (
 sub prepare {
 	my $self = shift;
 	
-	if ( $self->check_status == 0 ) {
+	if ( $self->check_health == 0 ) {
 		return $self->prepared(0);
 	};
 	if ( $self->prepared == 1 ) {
@@ -44,7 +44,7 @@ sub prepare {
 sub move {
 	my $self = shift;
 
-	if ( $self->check_status == 0) {
+	if ( $self->check_health == 0) {
 		return 0;
 	} elsif ( $self->prepared == 0) {
 		print ("We are not prepared for battle! \n");
@@ -57,7 +57,7 @@ sub move {
 	};
 }
 
-sub check_status {
+sub check_health {
 	my $self = shift;
 
 	if ( $self->health <= 0 ) {
@@ -74,7 +74,7 @@ sub take_damage {
 	my ( $self, $amount ) = @_;
 	my $crit_chance = int(rand(10));
 
-	return if $self->check_status == 0;
+	return if $self->check_health == 0;
 
 	if ( $crit_chance == 9 ) {
 		print ("Critical damage! Leave unit immediately! \n");

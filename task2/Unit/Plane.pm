@@ -8,18 +8,18 @@ extends 'Unit';
 
 has 'weapon1' => (
 	is => 'ro',
-	isa => 'Weapon',
+	isa => 'Weapon::Machinegun',
 	builder => '_install_w1',
 	handles => {
-		recharge_mg => 'recharge',
-		shoot_mg    => 'shoot',
-		aim_mg		=> 'aim',
+		recharge_machinegun => 'recharge',
+		shoot_machinegun    => 'shoot',
+		aim_machinegun		=> 'aim',
 	},
 );
 
 has 'weapon2' => (
 	is => 'ro',
-	isa => 'Weapon',
+	isa => 'Weapon::Missle',
 	builder => '_install_w2',
 	handles => {
 		shoot_missle    => 'shoot',
@@ -49,7 +49,7 @@ after 'prepare' => sub {
 sub move {
 	my $self = shift;
 	
-	if ( $self->check_status == 0) {
+	if ( $self->check_health == 0) {
 		return;
 	};
 	if ( $self->prepared == 0) {

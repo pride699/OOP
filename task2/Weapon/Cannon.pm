@@ -4,12 +4,6 @@ use Moose;
 
 extends 'Weapon';
 
-has 'ammo' => (
-	is  	=> 'rw',
-	isa 	=> 'Int',
-	default => '50',
-
-);
 
 has 'charged' => (
 	is  	=> 'rw',

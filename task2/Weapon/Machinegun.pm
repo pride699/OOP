@@ -5,11 +5,9 @@ use Moose;
 
 extends 'Weapon';
 
-has 'ammo' => (
-	is  	=> 'rw',
-	isa 	=> 'Int',
-	default => '5000',
 
+has '+ammo' => (
+	default => '5000',
 );
 
 has 'belt_capacity' => (

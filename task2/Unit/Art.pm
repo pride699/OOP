@@ -8,7 +8,7 @@ extends 'Unit';
 
 has 'weapon1' => (
 	is => 'ro',
-	isa => 'Weapon',
+	isa => 'Weapon::Cannon',
 	builder => '_install_w1',
 	handles => {
 		recharge_cannon => 'recharge',

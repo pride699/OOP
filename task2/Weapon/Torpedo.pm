@@ -6,14 +6,6 @@ use Moose;
 extends 'Weapon';
 
 
-has 'ammo' => (
-	is  	=> 'rw',
-	isa 	=> 'Int',
-	default => '50',
-
-);
-
-
 sub shoot {
 	my $self = shift;
 	

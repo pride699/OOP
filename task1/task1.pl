@@ -9,6 +9,7 @@ $captain->rank("Captain");
 $captain->spec("Commander");
 $captain->duty_time("900");
 $captain->vehicle("Enterprise");
+$captain->{elven_magic_level} = 9000;
 
 print Dumper $captain;
 
@@ -30,3 +31,6 @@ print Dumper $droid;
 
 print Dumper $hero->spec;
 print Dumper $hero->duty_time;
+
+
+

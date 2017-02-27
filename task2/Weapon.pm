@@ -9,6 +9,13 @@ has 'aimed' => (
 	default => '0',
 );
 
+has 'ammo' => (
+	is  	=> 'rw',
+	isa 	=> 'Int',
+	default => '50',
+
+);
+
 sub aim {
 	my $self = shift;
 	print ("Taget aquired!\n");

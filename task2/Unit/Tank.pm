@@ -12,9 +12,9 @@ has 'weapon1' => (
 	isa => 'Weapon::Machinegun',
 	builder => '_install_w1',
 	handles => {
-		recharge_mg => 'recharge',
-		shoot_mg    => 'shoot',
-		aim_mg		=> 'aim',
+		recharge_machinegun => 'recharge',
+		shoot_machinegun    => 'shoot',
+		aim_machinegun		=> 'aim',
 	},
 );
 
