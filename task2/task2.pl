@@ -51,23 +51,35 @@ my $stealth = Unit::Plane->new(
 # $flying_dutchman->move;
 # $flying_dutchman->move;
 
-# $abrams->prepare;
-# $abrams->weapon1->aim;
-# $abrams->recharge_mg;
-# $abrams->shoot_mg(50);
-# $abrams->move;
-# $abrams->weapon1->aim;
+$abrams->prepare;
+$abrams->aim_mg;
+$abrams->recharge_mg;
+$abrams->shoot_mg(50);
+$abrams->move;
+$abrams->weapon1->aim;
 
-# $abrams->shoot_mg(50);
+$abrams->shoot_mg(50);
+# $abrams->take_damage(200);
+$abrams->move;
+$abrams->shoot_cannon;
+$abrams->aim_cannon;
+$abrams->shoot_cannon;
+$abrams->recharge_cannon;
+$abrams->shoot_cannon;
+$abrams->Unit::Plane::move;
+$abrams->move;
+
+
+
 # $abrams->Unit::Ship::move;
 # $abrams->move;
 
-$stealth->prepare;
-$stealth->move;
-$stealth->take_damage(500);
+# $stealth->prepare;
+# $stealth->move;
 # $stealth->take_damage(500);
-$stealth->Unit::Ship::move;
-$stealth->move;
+# # $stealth->take_damage(500);
+# # $stealth->Unit::Ship::move;
+# $stealth->move;
 
 
 

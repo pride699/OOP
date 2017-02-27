@@ -14,6 +14,7 @@ has 'weapon1' => (
 	handles => {
 		recharge_mg => 'recharge',
 		shoot_mg    => 'shoot',
+		aim_mg		=> 'aim',
 	},
 );
 
@@ -24,6 +25,7 @@ has 'weapon2' => (
 	handles => {
 		recharge_cannon => 'recharge',
 		shoot_cannon    => 'shoot',
+		aim_cannon		=> 'aim',
 	},
 );
 
@@ -47,32 +49,19 @@ after 'prepare' => sub {
 };
 
 
-
 sub move {
 	my $self = shift;
 
-	# if ( $self->check_status == 0) {
-	# 	return;
-	# };
-	# if ( $self->prepared == 0) {
-	# 	print ("We are not prepared for battle! \n");
-	# 	return;
-	# };
-	# if ( $self->speed <= 0) {
-	# 	print ("We are immobilized\n");
-	# 	return;
-	# };
 	return if !$self->SUPER::move; 
-	if ( $self->isa('Unit::Ship')) {
-		print ("Oh no! It's ground!\n");
+	
+	foreach ( qw/Ship Plane/ ) {
+		if ( $self->isa("Unit::$_") ) {
+			print ("Oh no! It's ground!\n");
 		$self->health(0);
 		return;
+		};
 	};
-	if ( $self->isa('Unit::Plane')) {
-		print ("Oh no! It's ground!\n");
-		$self->health(0);
-		return;
-	};
+
 	print ("Lets roll!\n");
 }
 

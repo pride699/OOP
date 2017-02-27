@@ -2,12 +2,6 @@ package Unit;
 
 use Moose;
 use Weapon;
-# use Units::Unit::Tank;
-# use Units::Unit::Plane;
-# use Units::Unit::Ship;
-# use Units::Unit::Art;
-
-
 
 has 'name' => (
 	is  	 => 'ro',

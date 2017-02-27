@@ -13,6 +13,7 @@ has 'weapon1' => (
 	handles => {
 		recharge_mg => 'recharge',
 		shoot_mg    => 'shoot',
+		aim_mg		=> 'aim',
 	},
 );
 
@@ -22,6 +23,8 @@ has 'weapon2' => (
 	builder => '_install_w2',
 	handles => {
 		shoot_missle    => 'shoot',
+		aim_missle		=> 'aim',
+
 	},
 );
 
@@ -58,22 +61,13 @@ sub move {
 		$self->health(0);
 		return;
 	};
-	# return if !$self->SUPER::move; 
 	
-	if ( $self->isa('Unit::Tank')) {
-		print ("It seems we are blown up!\n");
+	foreach ( qw/Tank Ship Art/ ) {
+		if ( $self->isa("Unit::$_") ) {
+			print ("It seems we are blown up!\n");
 		$self->health(0);
 		return;
-	};
-	if ( $self->isa('Unit::Ship')) {
-		print ("It seems we are blown up!\n");
-		$self->health(0);
-		return;
-	};
-	if ( $self->isa('Unit::Art')) {
-		print ("It seems we are blown up!\n");
-		$self->health(0);
-		return;
+		};
 	};
 	
 	print ("Yay! Reminds me of PERL Harbor!\n");
