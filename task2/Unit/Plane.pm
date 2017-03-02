@@ -2,7 +2,7 @@ package Unit::Plane;
 
 use Moose;
 use Weapon::Machinegun;
-use Weapon::Missle;
+use Weapon::Missile;
 
 extends 'Unit';
 
@@ -19,7 +19,7 @@ has 'weapon1' => (
 
 has 'weapon2' => (
 	is => 'ro',
-	isa => 'Weapon::Missle',
+	isa => 'Weapon::Missile',
 	builder => '_install_w2',
 	handles => {
 		shoot_missle    => 'shoot',
@@ -34,7 +34,7 @@ sub _install_w1 {
 }
 
 sub _install_w2 {
-	my $weapon2 = Weapon::Missle->new( ammo => '20' );
+	my $weapon2 = Weapon::Missile->new( ammo => '20' );
 	return $weapon2;
 }
 
@@ -52,10 +52,7 @@ sub move {
 	if ( $self->check_health == 0) {
 		return;
 	};
-	if ( $self->prepared == 0) {
-		print ("We are not prepared for battle! \n");
-		return;
-	};
+	
 	if ( $self->speed <= 0 ) {
 		print ("Our engines are destroyed!\n");
 		$self->health(0);

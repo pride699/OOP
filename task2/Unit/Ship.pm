@@ -43,7 +43,7 @@ sub _install_w2 {
 after 'prepare' => sub {
 	my $self = shift;
 
-	print ("Fair wind!\n");
+	print ("Pull the anchor!\n");
 	
 	return $self->prepared(1);
 };

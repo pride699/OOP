@@ -79,8 +79,9 @@ my $stealth = Unit::Plane->new(
 	health => '2000',
 );
 
-$flying_dutchman->prepare;
-# $flying_dutchman->move;
+# $flying_dutchman->prepare;
+$flying_dutchman->move;
+# $flying_dutchman->fly;
 # $flying_dutchman->take_damage(40);
 # $flying_dutchman->move;
 # $flying_dutchman->move;
@@ -95,25 +96,25 @@ $flying_dutchman->prepare;
 # $flying_dutchman->move;
 # $flying_dutchman->move;
 
-$abrams->prepare;
-$abrams->aim_machinegun;
-$abrams->recharge_mg;
-$abrams->shoot_machinegun(50);
-$abrams->move;
-$abrams->weapon1->aim;
+# $abrams->prepare;
+# $abrams->aim_machinegun;
+# $abrams->recharge_mg;
+# $abrams->shoot_machinegun(50);
+# $abrams->move;
+# $abrams->weapon1->aim;
 
-$abrams->shoot_machinegun(50);
-# $abrams->take_damage(200);
-$abrams->move;
-$abrams->shoot_cannon;
-$abrams->aim_cannon;
-$abrams->shoot_cannon;
-$abrams->recharge_cannon;
-$abrams->shoot_cannon;
-$abrams->Unit::Ship::move;
-$abrams->move;
-$flying_dutchman->aim_torpedo;
-$flying_dutchman->shoot_torpedo;
+# $abrams->shoot_machinegun(50);
+# # $abrams->take_damage(200);
+# $abrams->move;
+# $abrams->shoot_cannon;
+# $abrams->aim_cannon;
+# $abrams->shoot_cannon;
+# $abrams->recharge_cannon;
+# $abrams->shoot_cannon;
+# $abrams->Unit::Ship::move;
+# $abrams->move;
+# $flying_dutchman->aim_torpedo;
+# $flying_dutchman->shoot_torpedo;
 
 
 

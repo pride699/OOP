@@ -17,7 +17,7 @@ my $hero = Unit->new();
 
 $hero->name("Akhmed");
 $hero->rank("699");
-$hero->spec("suicide bomber");
+$hero->spec("aimer");
 $hero->duty_time("we serve forever!");
 $hero->vehicle("Toyota Land Cruiser");
 

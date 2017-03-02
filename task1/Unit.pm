@@ -53,6 +53,7 @@ sub _valid_data {
 		rank 	  => "[\\w]+",
 		duty_time => "\\d+",
 		vehicle	  => ".+",
+		spec 	  => "(Commander)|(Engineer)|(Aimer)|(Charger)|(Radist)",
 	);
 
 	foreach ( keys(%valid_table) ) {
@@ -62,20 +63,9 @@ sub _valid_data {
 			} else {
 				return 0;
 			};
-		} elsif ( $method eq 'spec') {
-			my @spec_table = ("Commander", "Engineer", "Aimer", "Charger", "Radist");
-			my $count;
-			foreach ( @spec_table ) {
-				if ( $data eq $_ ) {
-					return 1;		
-				} else {
-					$count++;
-				};
-			};
-			return 0 if $count;
-		};
+		}; 
+
 	};
 }
-
 
 1;

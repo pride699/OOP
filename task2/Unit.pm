@@ -26,28 +26,20 @@ has 'health' => (
 
 has 'prepared' => (
 	is 		=> 'rw',
-	isa 	=> 'Bool',
-	default => '0',
+	builder => 'prepare',
 );
+
+
 
 sub prepare {
 	my $self = shift;
-	
-	if ( $self->check_health == 0 ) {
-		return $self->prepared(0);
-	};
-	if ( $self->prepared == 1 ) {
-		print ("We are already in battle!\n");
-	};
+
 }
 
 sub move {
 	my $self = shift;
 
 	if ( $self->check_health == 0) {
-		return 0;
-	} elsif ( $self->prepared == 0) {
-		print ("We are not prepared for battle! \n");
 		return 0;
 	} elsif ( $self->speed <= 0) {
 		print ("We are immobilized\n");
