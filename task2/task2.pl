@@ -81,6 +81,15 @@ my $stealth = Unit::Plane->new(
 
 # $flying_dutchman->prepare;
 $flying_dutchman->move;
+$abrams->ride;
+# $flying_dutchman->ride;
+$flying_dutchman->move;
+$abrams->fly;
+$abrams->shoot_cannon;
+$abrams->move;
+$abrams->aim_cannon;
+# $abrams->move;
+# $abrams->aim_cannon;
 # $flying_dutchman->fly;
 # $flying_dutchman->take_damage(40);
 # $flying_dutchman->move;
@@ -113,8 +122,9 @@ $flying_dutchman->move;
 # $abrams->shoot_cannon;
 # $abrams->Unit::Ship::move;
 # $abrams->move;
-# $flying_dutchman->aim_torpedo;
-# $flying_dutchman->shoot_torpedo;
+$flying_dutchman->aim_torpedo;
+$flying_dutchman->shoot_torpedo;
+$flying_dutchman->ride;
 
 
 

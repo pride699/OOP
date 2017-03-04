@@ -12,9 +12,9 @@ has 'weapon1' => (
 	isa => 'Weapon::Machinegun',
 	builder => '_install_w1',
 	handles => {
-		recharge_machinegun => 'recharge',
-		shoot_machinegun    => 'shoot',
-		aim_machinegun		=> 'aim',
+		_recharge_machinegun => 'recharge',
+		_shoot_machinegun    => 'shoot',
+		_aim_machinegun		 => 'aim',
 	},
 );
 
@@ -23,9 +23,9 @@ has 'weapon2' => (
 	isa => 'Weapon::Cannon',
 	builder => '_install_w2',
 	handles => {
-		recharge_cannon => 'recharge',
-		shoot_cannon    => 'shoot',
-		aim_cannon		=> 'aim',
+		_recharge_cannon => 'recharge',
+		_shoot_cannon    => 'shoot',
+		_aim_cannon		 => 'aim',
 	},
 );
 
@@ -48,7 +48,6 @@ after 'prepare' => sub {
 	return $self->prepared(1);
 };
 
-
 sub move {
 	my $self = shift;
 
@@ -64,6 +63,44 @@ sub move {
 
 	print ("Lets roll!\n");
 }
+
+sub shoot_cannon {
+	my $self = shift;
+	return if ( !$self->check_health );
+	$self->_shoot_cannon;
+}
+
+sub aim_cannon {
+	my $self = shift;
+	return if ( !$self->check_health );
+	$self->_aim_cannon;
+}
+
+sub recharge_cannon {
+	my $self = shift;
+	return if ( !$self->check_health );
+	$self->_recharge_cannon;
+}
+
+sub shoot_machinegun {
+	my $self = shift;
+	return if ( !$self->check_health );
+	$self->_shoot_machinegun;
+}
+
+sub aim_machinegun {
+	my $self = shift;
+	return if ( !$self->check_health );
+	$self->_aim_machinegun;
+}
+
+sub recharge_machinegun {
+	my $self = shift;
+	return if ( !$self->check_health );
+	$self->_recharge_machinegun;
+}
+
+
 
 
 1;

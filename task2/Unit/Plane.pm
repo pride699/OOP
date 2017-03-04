@@ -11,9 +11,9 @@ has 'weapon1' => (
 	isa => 'Weapon::Machinegun',
 	builder => '_install_w1',
 	handles => {
-		recharge_machinegun => 'recharge',
-		shoot_machinegun    => 'shoot',
-		aim_machinegun		=> 'aim',
+		_recharge_machinegun => 'recharge',
+		_shoot_machinegun    => 'shoot',
+		_aim_machinegun		 => 'aim',
 	},
 );
 
@@ -22,8 +22,8 @@ has 'weapon2' => (
 	isa => 'Weapon::Missile',
 	builder => '_install_w2',
 	handles => {
-		shoot_missle    => 'shoot',
-		aim_missle		=> 'aim',
+		_shoot_missile  => 'shoot',
+		_aim_missile	=> 'aim',
 
 	},
 );
@@ -50,25 +50,56 @@ sub move {
 	my $self = shift;
 	
 	if ( $self->check_health == 0) {
-		return;
+		return 0;
 	};
 	
 	if ( $self->speed <= 0 ) {
 		print ("Our engines are destroyed!\n");
 		$self->health(0);
-		return;
+		return 0;
 	};
 	
 	foreach ( qw/Tank Ship Art/ ) {
 		if ( $self->isa("Unit::$_") ) {
 			print ("It seems we are blown up!\n");
 		$self->health(0);
-		return;
+		return 0;
 		};
 	};
 	
 	print ("Yay! Reminds me of PERL Harbor!\n");
+	return 1;
 };
+
+sub shoot_machinegun {
+	my $self = shift;
+	return if ( !$self->check_health );
+	$self->_shoot_machinegun;
+}
+
+sub aim_machinegun {
+	my $self = shift;
+	return if ( !$self->check_health );
+	$self->_aim_machinegun;
+}
+
+sub recharge_machinegun {
+	my $self = shift;
+	return if ( !$self->check_health );
+	$self->_recharge_machinegun;
+}
+
+sub shoot_missile {
+	my $self = shift;
+	return if ( !$self->check_health );
+	$self->_shoot_missile;
+}
+
+sub aim_missile{
+	my $self = shift;
+	return if ( !$self->check_health );
+	$self->_aim_missile;
+}
 
 
 1;

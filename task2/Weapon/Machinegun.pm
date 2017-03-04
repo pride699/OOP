@@ -40,13 +40,16 @@ sub recharge {
 	
 	if ( $self->belt_charge == $self->belt_capacity ) {
 		print("We're ready to feed them some metal! \n");
+		return 0;
 	} else {
 		if ( $self->ammo == 0 ) {
 			print ("We are out of ammo! Use the remaining ", $self->belt_charge, " and fall back to base!\n");
+			return 0;
 		} else {
 			$self->ammo( $self->ammo - $self->check_ammo );
 			$self->belt_charge( $self->belt_charge + $self->check_ammo );
 			print ("Machinegun is recharged!\n");
+			return 1;
 		};
 	};
 }
@@ -56,13 +59,15 @@ sub shoot {
 
 	if ( !$self->aimed ) {
 		print ("We can't shoot just anywhere!\n");
-		return;
+		return 0;
 	}; 
 	if ( $self->belt_charge < $amount ) {
 		print ("Can't shoot $amount, just ", $self->belt_charge , " ammo left!\n");
+		return 0;
 	} else {
 		print ("Let's show them democracy!!\n");
 		$self->belt_charge( $self->belt_charge - $amount );
+		return 1;
 	};
 }
 

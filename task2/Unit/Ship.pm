@@ -12,9 +12,9 @@ has 'weapon1' => (
 	isa => 'Weapon::Cannon',
 	builder => '_install_w1',
 	handles => {
-		recharge_cannon => 'recharge',
-		shoot_cannon    => 'shoot',
-		aim_cannon		=> 'aim',
+		_recharge_cannon => 'recharge',
+		_shoot_cannon    => 'shoot',
+		_aim_cannon		 => 'aim',
 
 	},
 );
@@ -24,8 +24,8 @@ has 'weapon2' => (
 	isa => 'Weapon::Torpedo',
 	builder => '_install_w2',
 	handles => {
-		shoot_torpedo  => 'shoot',
-		aim_torpedo	   => 'aim',
+		_shoot_torpedo  => 'shoot',
+		_aim_torpedo	=> 'aim',
 
 	},
 );
@@ -63,6 +63,36 @@ sub move {
 
 	print ("Fair wind!\n");
 };
+
+sub shoot_cannon {
+	my $self = shift;
+	return if ( !$self->check_health );
+	$self->_shoot_cannon;
+}
+
+sub aim_cannon {
+	my $self = shift;
+	return if ( !$self->check_health );
+	$self->_aim_cannon;
+}
+
+sub recharge_cannon {
+	my $self = shift;
+	return if ( !$self->check_health );
+	$self->_recharge_cannon;
+}
+
+sub shoot_torpedo {
+	my $self = shift;
+	return if ( !$self->check_health );
+	$self->_shoot_torpedo;
+}
+
+sub aim_torpedo {
+	my $self = shift;
+	return if ( !$self->check_health );
+	$self->_aim_torpedo;
+}
 
 
 1;

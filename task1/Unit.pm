@@ -17,30 +17,17 @@ sub new {
 
 }
 
-
-
-
 sub AUTOLOAD {
-	my $self = shift or return undef;
+	my ( $self, $data ) = @_;
 	( my $method = $AUTOLOAD ) =~ s/.*:://;
-	
-	if ( exists $self->{$method} ) {
-		my $accessor = sub {
-			my ( $closure_self, $data ) = @_;
-			
-			if ( _valid_data( $method, $data ) ) {
-				return $closure_self->{$method} = $data;
-			}
-			return $closure_self->{$method};
-		};
 
-		SYMBOL_TABLE_HACQUERY: {
-			no strict qw{refs};
-			*$AUTOLOAD = $accessor;
-		}
-		unshift @_, $self;
-		goto &$AUTOLOAD;
-	}
+	if ( exists $self->{$method} ) {
+		if ( _valid_data( $method, $data ) ) {
+			return $self->{$method} = $data;
+		};
+		return $self->{$method};
+	};
+
 }
 
 sub _valid_data {
@@ -56,15 +43,10 @@ sub _valid_data {
 		spec 	  => "(Commander)|(Engineer)|(Aimer)|(Charger)|(Radist)",
 	);
 
-	foreach ( keys(%valid_table) ) {
-		if ( $method eq $_) {
-			if ( $data =~ /$valid_table{$_}/i ) {
-				return 1;
-			} else {
-				return 0;
-			};
-		}; 
-
+	if ( $data =~ /$valid_table{$method}/i ) {
+		return 1;
+	} else {
+		return 0;
 	};
 }
 

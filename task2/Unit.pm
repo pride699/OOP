@@ -29,8 +29,6 @@ has 'prepared' => (
 	builder => 'prepare',
 );
 
-
-
 sub prepare {
 	my $self = shift;
 
@@ -47,6 +45,66 @@ sub move {
 	} else {
 		return 1;
 	};
+}
+
+sub ride {
+	my $self = shift;
+
+	return if !$self->Unit::move; 
+	
+	foreach ( qw/Ship Plane/ ) {
+		if ( $self->isa("Unit::$_") ) {
+			print ("Oh no! It's ground!\n");
+		$self->health(0);
+		return 0;
+		};
+	};
+
+	print ("Lets ride!\n");
+	return 1;
+}
+
+sub sail {
+	my $self = shift;
+	
+	return if !$self->Unit::move; 
+	
+	foreach ( qw/Tank Plane Art/ ) {
+		if ( $self->isa("Unit::$_") ) {
+			print ("We are drowning!\n");
+		$self->health(0);
+		return 0;
+		};
+	};
+
+	print ("Look! Mermaids!!!\n");
+	return 1;
+
+}
+
+sub fly {
+	my $self = shift;
+	
+	if ( $self->check_health == 0) {
+		return 0;
+	};
+	
+	if ( $self->speed <= 0 ) {
+		print ("Our engines are destroyed!\n");
+		$self->health(0);
+		return 0;
+	};
+	
+	foreach ( qw/Tank Ship Art/ ) {
+		if ( $self->isa("Unit::$_") ) {
+			print ("It seems we are blown up!\n");
+		$self->health(0);
+		return 0;
+		};
+	};
+	
+	print ("Make it happen!\n");
+	return 1;
 }
 
 sub check_health {
