@@ -18,7 +18,8 @@ sub shoot {
 		print ("Yarr! Parrrley! \n");
 		$self->ammo( $self->ammo - 1 );
 		return 1;
-	} else {
+	} 
+	else {
 		print ("No torpedos left! \n");
 		return 0;
 	};

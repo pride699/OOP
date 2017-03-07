@@ -53,16 +53,30 @@ sub move {
 	
 	return if !$self->SUPER::move; 
 	
-	foreach ( qw/Tank Plane Art/ ) {
-		if ( $self->isa("Unit::$_") ) {
-			print ("We are drowning!\n");
-		$self->health(0);
-		return;
-		};
-	};
-
 	print ("Fair wind!\n");
+	return 1;
 };
+
+sub ride {
+	my $self = shift;
+
+	return if !$self->Unit::move; 
+
+	print ("We are running aground!\n");
+	$self->health(0);
+	return 0;
+}
+
+sub fly {
+	my $self = shift;
+	
+	return if !$self->Unit::move; 
+	
+	print ("It seems we are blown up!\n");
+	$self->health(0);
+	return 0;
+
+}
 
 sub shoot_cannon {
 	my $self = shift;

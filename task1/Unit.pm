@@ -24,6 +24,10 @@ sub AUTOLOAD {
 	if ( exists $self->{$method} ) {
 		if ( _valid_data( $method, $data ) ) {
 			return $self->{$method} = $data;
+		} 
+		else {
+			print ("Data entered in $method is invalid!\n");
+			return 0;
 		};
 		return $self->{$method};
 	};
@@ -42,12 +46,6 @@ sub _valid_data {
 		vehicle	  => ".+",
 		spec 	  => "(Commander)|(Engineer)|(Aimer)|(Charger)|(Radist)",
 	);
-
-	if ( $data =~ /$valid_table{$method}/i ) {
-		return 1;
-	} else {
-		return 0;
-	};
-}
+	return $data =~ /$valid_table{$method}/i ? 1 : 0;
 
 1;

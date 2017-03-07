@@ -59,17 +59,30 @@ sub move {
 		return 0;
 	};
 	
-	foreach ( qw/Tank Ship Art/ ) {
-		if ( $self->isa("Unit::$_") ) {
-			print ("It seems we are blown up!\n");
-		$self->health(0);
-		return 0;
-		};
-	};
-	
 	print ("Yay! Reminds me of PERL Harbor!\n");
 	return 1;
 };
+
+sub ride {
+	my $self = shift;
+
+	return if !$self->Unit::move; 
+
+	print ("We are falling!\n");
+	$self->health(0);
+	return 0;
+}
+
+sub sail {
+	my $self = shift;
+	
+	return if !$self->Unit::move; 
+	
+	print ("We are drowning!\n");
+	$self->health(0);
+	return 0;
+
+}
 
 sub shoot_machinegun {
 	my $self = shift;

@@ -39,10 +39,12 @@ sub move {
 
 	if ( $self->check_health == 0) {
 		return 0;
-	} elsif ( $self->speed <= 0) {
+	} 
+	elsif ( $self->speed <= 0) {
 		print ("We are immobilized\n");
 		return 0;
-	} else {
+	} 
+	else {
 		return 1;
 	};
 }
@@ -51,14 +53,6 @@ sub ride {
 	my $self = shift;
 
 	return if !$self->Unit::move; 
-	
-	foreach ( qw/Ship Plane/ ) {
-		if ( $self->isa("Unit::$_") ) {
-			print ("Oh no! It's ground!\n");
-		$self->health(0);
-		return 0;
-		};
-	};
 
 	print ("Lets ride!\n");
 	return 1;
@@ -69,14 +63,6 @@ sub sail {
 	
 	return if !$self->Unit::move; 
 	
-	foreach ( qw/Tank Plane Art/ ) {
-		if ( $self->isa("Unit::$_") ) {
-			print ("We are drowning!\n");
-		$self->health(0);
-		return 0;
-		};
-	};
-
 	print ("Look! Mermaids!!!\n");
 	return 1;
 
@@ -94,14 +80,7 @@ sub fly {
 		$self->health(0);
 		return 0;
 	};
-	
-	foreach ( qw/Tank Ship Art/ ) {
-		if ( $self->isa("Unit::$_") ) {
-			print ("It seems we are blown up!\n");
-		$self->health(0);
-		return 0;
-		};
-	};
+
 	
 	print ("Make it happen!\n");
 	return 1;
@@ -114,7 +93,8 @@ sub check_health {
 		print ("Unit is destroyed x_x \n");
 		$self->speed(0);
 		return 0;
-	} else {
+	} 
+	else {
 		return 1;
 	};
 
@@ -130,7 +110,8 @@ sub take_damage {
 		print ("Critical damage! Leave unit immediately! \n");
 		$self->health(0);
 
-	} else {
+	} 
+	else {
 		print ("We are under attack! \n");
 		$self->health( $self->health - $amount );
 		$self->speed( $self->speed - $amount);

@@ -37,18 +37,31 @@ after 'prepare' => sub {
 
 	return if !$self->SUPER::move; 
 
-	foreach ( qw/Ship Plane/ ) {
-		if ( $self->isa("Unit::$_") ) {
-			print ("Oh no! It's ground!\n");
-		$self->health(0);
-		return 0;
-		};
-	};
-
 	print ("Changing position!\n");
 	return 1;
 };
 
+sub sail {
+	my $self = shift;
+	
+	return if !$self->Unit::move; 
+	
+	print ("We are drowning!\n");
+	$self->health(0);
+	return 0;
+
+}
+
+sub fly {
+	my $self = shift;
+	
+	return if !$self->Unit::move; 
+	
+	print ("It seems we are blown up!\n");
+	$self->health(0);
+	return 0;
+
+}
 
 sub shoot_cannon {
 	my $self = shift;

@@ -29,8 +29,15 @@ $droid->rank(":*** :-)");
 
 print Dumper $droid;
 
-print Dumper $hero->spec;
-print Dumper $hero->duty_time;
+# print Dumper $hero->spec;
+# print Dumper $hero->duty_time;
+
+$hero->duty_time;
+print Dumper $hero->{duty_time};
+$hero->duty_time(15);
+print Dumper $hero->{duty_time};
+
+
 
 
 

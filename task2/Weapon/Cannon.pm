@@ -19,13 +19,15 @@ sub recharge {
 		if ( $self->ammo == 0 ) {
 			print ("We're out if ammo sir, fall back! \n");
 			return 0;
-		} else {
+		} 
+		else {
 			$self->charged(1);
 			$self->ammo( $self->ammo -1 );
 			print ("Cannon is charged! \n");
 			return 1;
 		}
-	} else {
+	} 
+	else {
 		print ("Cannon is ready to fire! \n");
 		return 0;
 	};
@@ -43,7 +45,8 @@ sub shoot {
 		print ("Fire! \n");
 		$self->charged(0);
 		return 1;
-	} else {
+	} 
+	else {
 		print ("We need recharge, sir! \n");
 		return 0;
 	};
