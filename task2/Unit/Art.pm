@@ -41,26 +41,13 @@ after 'prepare' => sub {
 	return 1;
 };
 
-sub sail {
+sub ride {
 	my $self = shift;
-	
+
 	return if !$self->Unit::move; 
-	
-	print ("We are drowning!\n");
-	$self->health(0);
-	return 0;
 
-}
-
-sub fly {
-	my $self = shift;
-	
-	return if !$self->Unit::move; 
-	
-	print ("It seems we are blown up!\n");
-	$self->health(0);
-	return 0;
-
+	print ("Lets ride!\n");
+	return 1;
 }
 
 sub shoot_cannon {

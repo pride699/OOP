@@ -54,8 +54,20 @@ sub ride {
 
 	return if !$self->Unit::move; 
 
-	print ("Lets ride!\n");
-	return 1;
+	print ("We are running aground!\n");
+	$self->health(0);
+	return 0;
+}
+
+sub fly {
+	my $self = shift;
+	
+	return if !$self->Unit::move; 
+	
+	print ("It seems we are blown up!\n");
+	$self->health(0);
+	return 0;
+
 }
 
 sub sail {
@@ -63,27 +75,10 @@ sub sail {
 	
 	return if !$self->Unit::move; 
 	
-	print ("Look! Mermaids!!!\n");
-	return 1;
+	print ("We are drowning!\n");
+	$self->health(0);
+	return 0;
 
-}
-
-sub fly {
-	my $self = shift;
-	
-	if ( $self->check_health == 0) {
-		return 0;
-	};
-	
-	if ( $self->speed <= 0 ) {
-		print ("Our engines are destroyed!\n");
-		$self->health(0);
-		return 0;
-	};
-
-	
-	print ("Make it happen!\n");
-	return 1;
 }
 
 sub check_health {

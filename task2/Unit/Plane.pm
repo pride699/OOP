@@ -63,25 +63,21 @@ sub move {
 	return 1;
 };
 
-sub ride {
-	my $self = shift;
-
-	return if !$self->Unit::move; 
-
-	print ("We are falling!\n");
-	$self->health(0);
-	return 0;
-}
-
-sub sail {
+sub fly {
 	my $self = shift;
 	
-	return if !$self->Unit::move; 
+	if ( $self->check_health == 0) {
+		return 0;
+	};
 	
-	print ("We are drowning!\n");
-	$self->health(0);
-	return 0;
+	if ( $self->speed <= 0 ) {
+		print ("Our engines are destroyed!\n");
+		$self->health(0);
+		return 0;
+	};
 
+	print ("Make it happen!\n");
+	return 1;
 }
 
 sub shoot_machinegun {

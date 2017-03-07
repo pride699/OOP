@@ -57,24 +57,13 @@ sub move {
 	return 1;
 };
 
-sub ride {
-	my $self = shift;
-
-	return if !$self->Unit::move; 
-
-	print ("We are running aground!\n");
-	$self->health(0);
-	return 0;
-}
-
-sub fly {
+sub sail {
 	my $self = shift;
 	
 	return if !$self->Unit::move; 
 	
-	print ("It seems we are blown up!\n");
-	$self->health(0);
-	return 0;
+	print ("Look! Mermaids!!!\n");
+	return 1;
 
 }
 

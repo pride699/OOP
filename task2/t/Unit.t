@@ -25,10 +25,10 @@ my $test_unit = Unit->new(
 );
 ok($test_unit, "summon new unit");	
 ok($test_unit->prepared, "unit prepares to battle automaticaly");
-ok($test_unit->fly, "unit can fly");
-ok($test_unit->sail, "unit can sail");	
-ok($test_unit->ride, "unit can ride on ground");	
 ok($test_unit->move, "unit can move");	
+ok(!$test_unit->fly, "abstract unit can't fly");
+ok(!$test_unit->sail, "abstract unit can't sail");	
+ok(!$test_unit->ride, "abstract unit can't ride on ground");	
 
 $test_unit->{speed} = 0;
 ok(!$test_unit->sail, "unit can't sail with 0 speed");	
