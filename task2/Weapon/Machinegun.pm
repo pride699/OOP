@@ -49,8 +49,9 @@ sub recharge {
 			return 0;
 		} 
 		else {
-			$self->ammo( $self->ammo - $self->check_ammo );
-			$self->belt_charge( $self->belt_charge + $self->check_ammo );
+			my $amount = $self->check_ammo;
+			$self->ammo( $self->ammo - $amount );
+			$self->belt_charge( $self->belt_charge + $amount );
 			print ("Machinegun is recharged!\n");
 			return 1;
 		};

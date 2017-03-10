@@ -12,16 +12,19 @@ has 'name' => (
 has 'speed' => (
 	is  	=> 'rw',
 	isa 	=> 'Num',
+	default => '200',
 );
 
 has 'armor' => (
 	is  	=> 'ro',
 	isa 	=> 'Int',
+	default => '200',
 );
 
 has 'health' => (
 	is  	=> 'rw',
 	isa 	=> 'Int',
+	default => '1000',
 );
 
 has 'prepared' => (
@@ -95,11 +98,14 @@ sub check_health {
 
 }
 
+
+
 sub take_damage {
-	my ( $self, $amount ) = @_;
-	my $crit_chance = int(rand(10));
+	my ( $self, $amount, $crit_chance ) = @_;
 
 	return if $self->check_health == 0;
+
+	$crit_chance = int(rand(10)) if !$crit_chance;
 
 	if ( $crit_chance == 9 ) {
 		print ("Critical damage! Leave unit immediately! \n");
@@ -110,9 +116,6 @@ sub take_damage {
 		print ("We are under attack! \n");
 		$self->health( $self->health - $amount );
 		$self->speed( $self->speed - $amount);
-		$self->weapon1->aimed(0);
-		$self->weapon2->aimed(0);
-		
 	};
 
 }
